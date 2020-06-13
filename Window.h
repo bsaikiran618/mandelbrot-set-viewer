@@ -1,11 +1,11 @@
-#include "Window.h"
+#ifndef WINDOW
 #include <string>
 #include <SDL2/SDL.h>
 class Window
 {
 	public:
 		SDL_Window *window;
-		SDL_Surface *windowSurface
+		SDL_Surface *windowSurface;
 		unsigned int windowHeight;
 		unsigned int windowWidth;
 		unsigned int windowX,windowY;
@@ -22,7 +22,9 @@ class Window
 				}
 		};
 		Window(std::string title, unsigned int w, unsigned int h);
-		Window(std::string title,unsigned int w, unsigned int h, unsinged int win_x, unsigned int win_y);
-		Window(std::string title,unsigned int w, unsigned int h, unsinged int win_x, unsigned int win_y, uint32_t flgs);
+		Window(std::string title,unsigned int w, unsigned int h, unsigned int win_x, unsigned int win_y);
+		Window(std::string title,unsigned int w, unsigned int h, unsigned int win_x, unsigned int win_y, uint32_t flgs);
+		void update();
 		~Window();
 };
+#endif
