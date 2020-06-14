@@ -47,6 +47,18 @@ void Window::update()
 {
 	SDL_UpdateWindowSurface(window);
 }
+void Window::handleWindowEvents()
+{
+	bool quit = false;
+	SDL_Event e;
+	while(!quit)
+	{
+		while(SDL_PollEvent(&e))
+		{
+			if(e.type == SDL_QUIT) quit = true;
+		}
+	}
+}
 Window::~Window()
 {
 	SDL_DestroyWindow(window);

@@ -7,8 +7,8 @@ int main()
 	{
 		throw "Couldn't start SDL!";
 	}
-	Window win("First Window",640,480);
+	Window win("Mandelbrot Set Viewer",640,480);
 	win.update();
-	SDL_Delay(4000);
+	win.handleWindowEvents();
 	return 0;
 }
