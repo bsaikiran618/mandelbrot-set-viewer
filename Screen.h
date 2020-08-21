@@ -29,6 +29,23 @@ class Window
 		if((screenRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
 			throw "Couldn't create SDL Renderer!";
 	}
+	void startEventLoop()
+	{
+		SDL_Event e;
+		bool appQuit = false;
+		while(!appQuit)
+		{
+			while(SDL_PollEvent(&e))
+			{
+				if(e.type == SDL_QUIT)
+				{
+					appQuit = true;
+					break;
+				}
+			}
+		}
+		//event loop ends.
+	}
 };
 
 #endif

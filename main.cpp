@@ -23,7 +23,20 @@ void err(std::string message)
 
 int main()
 {
-	Window appWindow("SK's Mandelbrot Set Viewer");
-
+	try
+	{
+		Window appWindow("SK's Mandelbrot Set Viewer");
+		appWindow.startEventLoop();
+	}
+	catch(std::string errMsg)
+	{
+		std::cerr << errMsg << std::endl;
+		exit(-1);
+	}
+	catch(...)
+	{
+		std::cerr << "An unknown error occured!" << std::endl;
+		exit(-1);
+	}
 	return 0;
 }
