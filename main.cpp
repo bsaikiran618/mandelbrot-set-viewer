@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <string>
 
-#include "Screen.h"
+#include "Window.h"
 
 void err(std::string message)
 {
