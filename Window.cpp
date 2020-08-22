@@ -1,5 +1,7 @@
 #include "Window.h"
+#include <complex>
 #include <string>
+#include <iostream>
 #include <SDL2/SDL.h>
 
 Window::Window(std::string windowTitle, uint32_t flags)
