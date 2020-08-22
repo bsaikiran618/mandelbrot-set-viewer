@@ -7,7 +7,7 @@ class Cartesian2DPlane
 	uint32_t width, height;
 	double XScaleFactor, YScaleFactor;
 	public:
-	Cartesian2DPlane(uint32_t, uint32_t, double);
+	Cartesian2DPlane(uint32_t, uint32_t, double); //This last parameter is the scale factor. Increase to zoom in, decrease to zoom out
 	double getXScaleFactor(){return XScaleFactor;}
 	double getYScaleFactor(){return YScaleFactor;}
 	uint32_t getWidth(){return width;}

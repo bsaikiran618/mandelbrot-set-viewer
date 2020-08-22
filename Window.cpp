@@ -23,7 +23,7 @@ void Window::startEventLoop()
 		SDL_Event e;
 		bool appQuit = false;
 		
-		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 1.0);
+		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 0.1);
 		Cartesian2DPoint point1(0,0,&plane), point2(0,50,&plane);
 		Cartesian2DPoint point3(-50,0,&plane), point4(50,0,&plane), point5(0,-50,&plane);
 		SDL_SetRenderDrawColor(screenRenderer, 0,0,0,255);

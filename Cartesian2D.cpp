@@ -3,13 +3,10 @@
 Cartesian2DPoint::Cartesian2DPoint(double x, double y, Cartesian2DPlane *plane)
 {
 	//FLIP THE Y AXIS
-	scr_y = -y;
 	//TRANSLATE BOTH AXES
-	scr_x = x + (plane->getWidth()/2);
-	scr_y = y + (plane->getHeight()/2);
 	//SCALE THE POINT
-	scr_x *= plane->getXScaleFactor();
-	scr_y *= plane->getYScaleFactor();
+	scr_x = x*plane->getXScaleFactor() + (plane->getWidth()/2);
+	scr_y = -y*plane->getYScaleFactor() + (plane->getHeight()/2);
 }
 
 Cartesian2DPlane::Cartesian2DPlane(uint32_t w, uint32_t h, double zoom)
