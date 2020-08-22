@@ -1,15 +1,15 @@
 #include "Cartesian2D.h"
 
-Cartesian2DPoint::Cartesian2DPoint(uint32_t scr_x, uint32_t scr_y, Cartesian2DPlane *plane)
+Cartesian2DPoint::Cartesian2DPoint(double x, double y, Cartesian2DPlane *plane)
 {
 	//FLIP THE Y AXIS
-	y = -scr_y;
+	scr_y = -y;
 	//TRANSLATE BOTH AXES
-	x = scr_x + (plane->getWidth()/2);
-	y = scr_y + (plane->getHeight()/2);
+	scr_x = x + (plane->getWidth()/2);
+	scr_y = y + (plane->getHeight()/2);
 	//SCALE THE POINT
-	x *= plane->getXScaleFactor();
-	y *= plane->getYScaleFactor();
+	scr_x *= plane->getXScaleFactor();
+	scr_y *= plane->getYScaleFactor();
 }
 
 Cartesian2DPlane::Cartesian2DPlane(uint32_t w, uint32_t h, double zoom)

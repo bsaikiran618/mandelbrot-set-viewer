@@ -15,9 +15,10 @@ class Cartesian2DPlane
 };
 class Cartesian2DPoint
 {
-	long double x,y;
+	uint32_t scr_x,scr_y;
 	public:
-	Cartesian2DPoint(uint32_t , uint32_t , Cartesian2DPlane *);
-	//This constructor converts the given screen coordinates to cartesian points of a cartesian plane
+	Cartesian2DPoint(double, double, Cartesian2DPlane *);
+	uint32_t getX(){return scr_x;}
+	uint32_t getY(){return scr_y;}
 };
 #endif
