@@ -42,12 +42,12 @@ void Window::startEventLoop()
 				{
 					switch(e.key.keysym.sym)
 					{
-						case SDLK_UP: break;
-						case SDLK_DOWN: break;
-						case SDLK_LEFT: break;
-						case SDLK_RIGHT: break;
-						case SDLK_KP_PLUS: plane.zoomIn();break;
-						case SDLK_KP_MINUS:plane.zoomOut();break;
+						case SDLK_UP: 		plane.translateUp();	break;
+						case SDLK_DOWN: 	plane.translateDown();	break;
+						case SDLK_LEFT: 	plane.translateLeft();	break;
+						case SDLK_RIGHT: 	plane.translateRight();	break;
+						case SDLK_KP_PLUS: 	plane.zoomIn();			break;
+						case SDLK_KP_MINUS:	plane.zoomOut();		break;
 					}
 				}
 			}
