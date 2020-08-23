@@ -39,7 +39,7 @@ void Cartesian2DPlane::zoomOut()
 	XScaleFactor -= ZOOM_STEP;
 	YScaleFactor = (height/width) * XScaleFactor;
 }
-void Cartesian2DPlane::translateLeft() 	{	originX -= TRANSLATE_STEP;	}
-void Cartesian2DPlane::translateRight()	{	originX += TRANSLATE_STEP;	}
+void Cartesian2DPlane::translateLeft() 	{	originX += TRANSLATE_STEP;	}
+void Cartesian2DPlane::translateRight()	{	originX -= TRANSLATE_STEP;	}
 void Cartesian2DPlane::translateUp()	{	originY -= TRANSLATE_STEP;	}
 void Cartesian2DPlane::translateDown()	{	originY += TRANSLATE_STEP;	}

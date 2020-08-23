@@ -23,7 +23,7 @@ void Window::startEventLoop()
 		SDL_Event e;
 		bool appQuit = false;
 		
-		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 0.1);
+		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 1);
 		Cartesian2DPoint p1 (0,10,&plane) , p2(0,-10,&plane);
 		Cartesian2DPoint p3 (-10,0,&plane) , p4(10,0,&plane);
 
