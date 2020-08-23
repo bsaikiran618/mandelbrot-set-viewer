@@ -24,19 +24,13 @@ void Window::startEventLoop()
 		bool appQuit = false;
 		
 		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 0.1);
-		Cartesian2DPoint point1(0,0,&plane), point2(0,50,&plane);
-		Cartesian2DPoint point3(-50,0,&plane), point4(50,0,&plane), point5(0,-50,&plane);
-		SDL_SetRenderDrawColor(screenRenderer, 0,0,0,255);
-		SDL_RenderClear(screenRenderer);
-		SDL_SetRenderDrawColor(screenRenderer, 255,255,255,SDL_ALPHA_OPAQUE);
-		SDL_RenderDrawLine(screenRenderer, point1.getX(), point1.getY(), point2.getX(), point2.getY());
-		SDL_RenderDrawLine(screenRenderer, point1.getX(), point1.getY(), point3.getX(), point3.getY());
-		SDL_RenderDrawLine(screenRenderer, point1.getX(), point1.getY(), point4.getX(), point4.getY());
-		SDL_RenderDrawLine(screenRenderer, point1.getX(), point1.getY(), point5.getX(), point5.getY());
-		SDL_RenderPresent(screenRenderer);
+		Cartesian2DPoint p1 (0,10,&plane) , p2(0,-10,&plane);
+		Cartesian2DPoint p3 (-10,0,&plane) , p4(10,0,&plane);
 
 		while(!appQuit)
 		{
+			SDL_SetRenderDrawColor(screenRenderer, 0,0,0,255);
+			SDL_RenderClear(screenRenderer);
 			while(SDL_PollEvent(&e))
 			{
 				if(e.type == SDL_QUIT)
@@ -52,9 +46,15 @@ void Window::startEventLoop()
 						case SDLK_DOWN: break;
 						case SDLK_LEFT: break;
 						case SDLK_RIGHT: break;
+						case SDLK_KP_PLUS: plane.zoomIn();break;
+						case SDLK_KP_MINUS:plane.zoomOut();break;
 					}
 				}
 			}
+			SDL_SetRenderDrawColor(screenRenderer, 255,255,255,SDL_ALPHA_OPAQUE);
+			SDL_RenderDrawLine(screenRenderer, p1.getX(), p1.getY(), p2.getX(), p2.getY());
+			SDL_RenderDrawLine(screenRenderer, p3.getX(), p3.getY(), p4.getX(), p4.getY());
+			SDL_RenderPresent(screenRenderer);
 		}
 		//event loop ends.
 }
