@@ -1,21 +1,26 @@
 #include "Cartesian2D.h"
-
-Cartesian2DPoint::Cartesian2DPoint(double x, double y, Cartesian2DPlane *pl)
+#include <iostream>
+Cartesian2DPoint::Cartesian2DPoint(float x, float y, Cartesian2DPlane *pl)
 :plane_x(x),plane_y(y), plane(pl)
 {
 }
+Cartesian2DPoint::Cartesian2DPoint(uint32_t x, uint32_t y, Cartesian2DPlane *pl)
+{
+	plane = pl;
+	plane_x = (float(x) - (plane->getWidth()/2.0));
+	plane_y = -(float(y) - (plane->getHeight()/2.0));
+	std::cout << "Constructor: " << plane_x << ' ' << plane_y << std::endl;
+}
 uint32_t Cartesian2DPoint::getX()
 {
-	//return  (plane_x*plane->getXScaleFactor()) + (plane->getWidth()/2);
 	return  (plane_x*plane->getXScaleFactor()) + (plane->getOriginX());
 }
 uint32_t Cartesian2DPoint::getY()
 {
-	//return (-plane_y*plane->getYScaleFactor()) + (plane->getHeight()/2);
 	return (-plane_y*plane->getYScaleFactor()) + (plane->getOriginY());
 }
 
-Cartesian2DPlane::Cartesian2DPlane(uint32_t w, uint32_t h, double zoom)
+Cartesian2DPlane::Cartesian2DPlane(uint32_t w, uint32_t h, float zoom)
 {
 	width = w;
 	height = h;
