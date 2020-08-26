@@ -16,7 +16,7 @@ class Window
 	SDL_Renderer *screenRenderer;
 	
 	public:
-	Window(std::string windowTitle, uint32_t flags=SDL_WINDOW_SHOWN);
+	Window(std::string windowTitle, uint64_t flags=SDL_WINDOW_SHOWN);
 	void startEventLoop();
 };
 

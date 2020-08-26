@@ -1,12 +1,13 @@
 #include "Window.h"
 #include "Cartesian2D.h"
+#include "Mandelbrot.h"
 
 #include <complex>
 #include <string>
 #include <iostream>
 #include <SDL2/SDL.h>
 
-Window::Window(std::string windowTitle, uint32_t flags)
+Window::Window(std::string windowTitle, uint64_t flags)
 {	
 		if(SDL_Init(SDL_INIT_VIDEO) < 0) throw "Couldn't initialize SDL Video!";
 
@@ -24,18 +25,29 @@ void Window::startEventLoop()
 		bool appQuit = false;
 		
 		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 1);
-		//Cartesian2DPoint p1 (-10,0,&plane) , p2(10,0,&plane);
-		//Cartesian2DPoint p3 (0,10,&plane) , p4(0,-10,&plane);
-		Cartesian2DPoint p1(uint32_t(310),320, &plane);
-		Cartesian2DPoint p2(uint32_t(330),320, &plane);
-		Cartesian2DPoint p3(uint32_t(320),310, &plane);
-		Cartesian2DPoint p4(uint32_t(320),330, &plane);
-
-		std::cout << "P1 : " << p1.getX() << ',' << p1.getY() << std::endl;
 		while(!appQuit)
 		{
-			SDL_SetRenderDrawColor(screenRenderer, 0,0,0,255);
+			SDL_SetRenderDrawColor(screenRenderer, 0,0,0,SDL_ALPHA_OPAQUE);
 			SDL_RenderClear(screenRenderer);
+
+			for(uint64_t scr_x = 0; scr_x < plane.getWidth(); scr_x++)
+			{
+				for(uint64_t scr_y = 0; scr_y < plane.getHeight(); scr_y++)
+				{
+					//convert the screen coordinates to the cartesian plane coordinates
+					Cartesian2DPoint p1(uint64_t(scr_x), uint64_t(scr_y), &plane);
+
+					//convert cartesian plane coordinates to complex plane coordinates
+					std::complex<double> p2(p1.getPlaneX(), p1.getPlaneY());
+					if(inMandelbrotSet(p2, 15))
+					{
+						SDL_SetRenderDrawColor(screenRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+					}
+					else
+						SDL_SetRenderDrawColor(screenRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+					SDL_RenderDrawPoint(screenRenderer, p1.getOnScreenX(), p1.getOnScreenY());
+				}
+			}
 			while(SDL_PollEvent(&e))
 			{
 				if(e.type == SDL_QUIT)
@@ -56,9 +68,6 @@ void Window::startEventLoop()
 					}
 				}
 			}
-			SDL_SetRenderDrawColor(screenRenderer, 255,255,255,SDL_ALPHA_OPAQUE);
-			SDL_RenderDrawLine(screenRenderer, p1.getX(), p1.getY(), p2.getX(), p2.getY());
-			SDL_RenderDrawLine(screenRenderer, p3.getX(), p3.getY(), p4.getX(), p4.getY());
 			SDL_RenderPresent(screenRenderer);
 		}
 		//event loop ends.
