@@ -1,5 +1,6 @@
 # Mandelbrot-Set-Viewer
 A simple and interactive viewing tool written from scratch in C++ to explore the Mandelbrot set.
+![Mandelbrot Set black and white](/screenshots/WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWWWWWWWWWWWWWWWWW.png)
 
 ## Dependencies:
 `libsdl2-dev`
