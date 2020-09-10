@@ -7,8 +7,8 @@ Cartesian2DPoint::Cartesian2DPoint(double x, double y, Cartesian2DPlane *pl)
 Cartesian2DPoint::Cartesian2DPoint(uint64_t x, uint64_t y, Cartesian2DPlane *pl)
 {
 	plane = pl;
-	plane_x = (double(x) - (plane->getWidth()/2.0))/plane->getXScaleFactor();
-	plane_y = -(double(y) - (plane->getHeight()/2.0))/plane->getYScaleFactor();
+	plane_x = (double(x) - (plane->getOriginX()))/plane->getXScaleFactor();
+	plane_y = -(double(y) - (plane->getOriginY()))/plane->getYScaleFactor();
 }
 uint64_t Cartesian2DPoint::getOnScreenX()
 {
@@ -16,7 +16,7 @@ uint64_t Cartesian2DPoint::getOnScreenX()
 }
 uint64_t Cartesian2DPoint::getOnScreenY()
 {
-	return -(plane_y*plane->getYScaleFactor()) + (plane->getOriginY());
+	return ((-plane_y)*plane->getYScaleFactor()) + (plane->getOriginY());
 }
 
 Cartesian2DPlane::Cartesian2DPlane(uint64_t w, uint64_t h, double zoom)
@@ -26,7 +26,7 @@ Cartesian2DPlane::Cartesian2DPlane(uint64_t w, uint64_t h, double zoom)
 	originX = width/2;
 	originY = height/2;
 	XScaleFactor = zoom;
-	YScaleFactor = (height/width) * XScaleFactor;
+	YScaleFactor = (height/double(width)) * XScaleFactor;
 	// The above calculation makes sure that X and Y are
 	// "stretched" to equal lengths, so that even if the
 	// height and width are not same, we can have a grid
