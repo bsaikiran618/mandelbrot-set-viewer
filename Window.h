@@ -8,6 +8,7 @@
 
 #include <SDL2/SDL.h>
 #include <string>
+#include "Cartesian2D.h"
 
 class Window
 {
@@ -17,6 +18,7 @@ class Window
 	
 	public:
 	Window(std::string windowTitle, uint64_t flags=SDL_WINDOW_SHOWN);
+	void drawAxes(Cartesian2DPlane *plane);
 	void startEventLoop();
 };
 
