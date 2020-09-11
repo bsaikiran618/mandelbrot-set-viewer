@@ -3,7 +3,7 @@ A simple and interactive viewing tool written from scratch in C++ to explore the
 ![Mandelbrot Set black and white](/screenshots/WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWWWWWWWWWWWWWWWWW.png)
 ![Mandelbrot Set Blue](/screenshots/InBlue.png)
 ![Mandelbrot Set Blue](/screenshots/mb_set_dark_horizontal.png)
-![Mandelbrot Set Blue](/screenshots/mb_set_dark_horizontal.png)
+![Mandelbrot Set Blue](/screenshots/mb_set_dark_vertical.png)
 
 ## Dependencies:
 `libsdl2-dev`
