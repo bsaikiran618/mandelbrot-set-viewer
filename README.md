@@ -3,7 +3,7 @@ A simple and interactive viewing tool written from scratch in C++ to explore the
 ![Mandelbrot Set black and white](/screenshots/WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWWWWWWWWWWWWWWWWW.png)
 ![Mandelbrot Set Blue](/screenshots/InBlue.png)
 ![Mandelbrot Set Green](/screenshots/InGreen.png)
-![Mandelbrot Set Magenta](/screenshots/InMagenta.png)
+![Mandelbrot Set Magenta](/screenshots/InRed.png)
 ![Mandelbrot Set in various colors](/screenshots/MoreColorfulMandelbrotSet.png)
 
 ## Dependencies:
