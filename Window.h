@@ -3,8 +3,8 @@
 
 #define WINDOW_X SDL_WINDOWPOS_CENTERED
 #define WINDOW_Y SDL_WINDOWPOS_CENTERED
-#define SCREEN_W 640
-#define SCREEN_H 640
+#define SCREEN_W 900
+#define SCREEN_H 900
 
 #include <SDL2/SDL.h>
 #include <string>
