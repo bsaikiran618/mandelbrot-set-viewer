@@ -5,6 +5,7 @@
 #include <complex>
 #include <string>
 #include <iostream>
+#include <cmath>
 #include <SDL2/SDL.h>
 
 
@@ -40,6 +41,7 @@ void Window::startEventLoop()
 {
 		SDL_Event e;
 		bool appQuit = false;
+		srand(42);
 		
 		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 1);
 		while(!appQuit)
@@ -55,12 +57,25 @@ void Window::startEventLoop()
 					Cartesian2DPoint p1(uint64_t(scr_x), uint64_t(scr_y), &plane);
 					//convert cartesian plane coordinates to complex plane coordinates
 					std::complex<double> p2(p1.getPlaneX(), p1.getPlaneY());
-					if(inMandelbrotSet(p2, 15))
+					int c;
+					if((c = inMandelbrotSet(p2, 15)) != -1)
 					{
-						SDL_SetRenderDrawColor(screenRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+						/*
+						int r = int(c * 0.01 * 255)%255;
+						int g = int(c * 0.03 * 255)%255;
+						int b = int(c * 0.05 * 255)%255;
+						*/
+						long int r,g,b;
+						if(c != 0)
+						{
+							r = (c) % 256;
+							g = (c*c) % 256;
+							b = (c*c*c) % 256;
+						}else r = g = b = 0;
+						SDL_SetRenderDrawColor(screenRenderer, r, g, b, SDL_ALPHA_OPAQUE);
 					}
 					else
-						SDL_SetRenderDrawColor(screenRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+						SDL_SetRenderDrawColor(screenRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 					SDL_RenderDrawPoint(screenRenderer, p1.getOnScreenX(), p1.getOnScreenY());
 				}
 			}

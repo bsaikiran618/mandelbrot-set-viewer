@@ -4,6 +4,6 @@
 #include <complex>
 
 std::complex<double> mandelbrot_function(std::complex<double> &);
-bool inMandelbrotSet(std::complex<double>, uint64_t max_iters = 5);
+int inMandelbrotSet(std::complex<double>, uint64_t max_iters = 5);
 
 #endif
