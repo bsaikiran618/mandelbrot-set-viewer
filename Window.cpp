@@ -43,7 +43,7 @@ void Window::startEventLoop()
 		bool appQuit = false;
 		srand(42);
 		
-		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 1);
+		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 150);
 		while(!appQuit)
 		{
 			SDL_SetRenderDrawColor(screenRenderer, 0,0,0,SDL_ALPHA_OPAQUE);
@@ -75,7 +75,7 @@ void Window::startEventLoop()
 						SDL_SetRenderDrawColor(screenRenderer, r, g, b, SDL_ALPHA_OPAQUE);
 					}
 					else
-						SDL_SetRenderDrawColor(screenRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+						SDL_SetRenderDrawColor(screenRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 					SDL_RenderDrawPoint(screenRenderer, p1.getOnScreenX(), p1.getOnScreenY());
 				}
 			}
