@@ -15,11 +15,13 @@ Run the following commands in the project folder:
 ```
 $ sudo apt-get install libsdl2-dev
 $ make
+$ ./test
 ```
 ##### Arch
 ```
 $ sudo pacman -S libsdl2-dev
 $ make
+$ ./test
 ```
 ## Windows Setup:
 ```
