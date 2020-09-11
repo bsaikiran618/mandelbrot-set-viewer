@@ -1,6 +1,6 @@
 #ifndef CARTESIAN_2D_HEADER
 #define CARTESIAN_2D_HEADER
-#define ZOOM_STEP 0.5
+#define ZOOM_STEP 2
 #define TRANSLATE_STEP 5
 #include <cstdint>
 class Cartesian2DPlane

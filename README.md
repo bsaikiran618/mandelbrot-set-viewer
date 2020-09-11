@@ -2,9 +2,8 @@
 A simple and interactive viewing tool written from scratch in C++ to explore the Mandelbrot set.
 ![Mandelbrot Set black and white](/screenshots/WOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWWWWWWWWWWWWWWWWW.png)
 ![Mandelbrot Set Blue](/screenshots/InBlue.png)
-![Mandelbrot Set Green](/screenshots/InGreen.png)
-![Mandelbrot Set Magenta](/screenshots/InRed.png)
-![Mandelbrot Set in various colors](/screenshots/MoreColorfulMandelbrotSet.png)
+![Mandelbrot Set Blue](/screenshots/mb_set_dark_horizontal.png)
+![Mandelbrot Set Blue](/screenshots/mb_set_dark_vertical.png)
 
 ## Dependencies:
 `libsdl2-dev`
@@ -16,11 +15,13 @@ Run the following commands in the project folder:
 ```
 $ sudo apt-get install libsdl2-dev
 $ make
+$ ./test
 ```
 ##### Arch
 ```
 $ sudo pacman -S libsdl2-dev
 $ make
+$ ./test
 ```
 ## Windows Setup:
 ```
