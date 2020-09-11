@@ -1,5 +1,6 @@
 #include "Cartesian2D.h"
 #include <iostream>
+#include <cmath>
 Cartesian2DPoint::Cartesian2DPoint(double x, double y, Cartesian2DPlane *pl)
 :plane_x(x),plane_y(y), plane(pl)
 {
@@ -12,11 +13,11 @@ Cartesian2DPoint::Cartesian2DPoint(uint64_t x, uint64_t y, Cartesian2DPlane *pl)
 }
 uint64_t Cartesian2DPoint::getOnScreenX()
 {
-	return  (plane_x*plane->getXScaleFactor()) + (plane->getOriginX());
+	return  round(plane_x*plane->getXScaleFactor()) + (plane->getOriginX());
 }
 uint64_t Cartesian2DPoint::getOnScreenY()
 {
-	return ((-plane_y)*plane->getYScaleFactor()) + (plane->getOriginY());
+	return round((-plane_y)*plane->getYScaleFactor()) + (plane->getOriginY());
 }
 
 Cartesian2DPlane::Cartesian2DPlane(uint64_t w, uint64_t h, double zoom)
