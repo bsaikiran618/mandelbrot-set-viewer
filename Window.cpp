@@ -32,7 +32,7 @@ Window::Window(std::string windowTitle, uint64_t flags)
 		if((window = SDL_CreateWindow(windowTitle.c_str(), WINDOW_X, WINDOW_Y, SCREEN_W, SCREEN_H, flags)) == NULL)
 			throw "Couldn't create SDL window!";
 
-		windowSurface = SDL_GetWindowSurface(window);
+		//windowSurface = SDL_GetWindowSurface(window);
 
 		if((screenRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
 			throw "Couldn't create SDL Renderer!";
