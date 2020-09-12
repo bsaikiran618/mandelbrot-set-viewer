@@ -11,14 +11,14 @@
 
 void Window::drawAxes( Cartesian2DPlane *plane )
 {
-	Cartesian2DPoint leftExtreme	(double(0),	-1000,	plane);
-	Cartesian2DPoint rightExtreme	(double(0),	1000,	plane);
-	Cartesian2DPoint topExtreme		(double(1000), 0,		plane);
-	Cartesian2DPoint bottomExtreme	(double(-1000),0, 	plane);
+	Cartesian2DPoint leftExtreme	(double(0),	-2000,	plane);
+	Cartesian2DPoint rightExtreme	(double(0),	2000,	plane);
+	Cartesian2DPoint topExtreme		(double(2000), 0,		plane);
+	Cartesian2DPoint bottomExtreme	(double(-2000),0, 	plane);
 
 	SDL_SetRenderDrawColor(screenRenderer, 120,120,120,SDL_ALPHA_OPAQUE);
 	//The X axis
-	SDL_RenderDrawLine(screenRenderer, leftExtreme.getOnScreenX(), leftExtreme.getOnScreenY(),	
+	SDL_RenderDrawLine(screenRenderer, leftExtreme.getOnScreenX(), leftExtreme.getOnScreenY(),
 										rightExtreme.getOnScreenX(), rightExtreme.getOnScreenY());
 	//The Y axis
 	SDL_RenderDrawLine(screenRenderer, topExtreme.getOnScreenX(), topExtreme.getOnScreenY(),
@@ -39,7 +39,7 @@ void Window::drawScreen(Cartesian2DPlane *plane)
 					//std::complex<double> p2(p1.getPlaneX(), p1.getPlaneY());
 					std::complex<double> p2(-p1.getPlaneY(), p1.getPlaneX());
 					int c;
-					if((c = inMandelbrotSet(p2, 20)) != -1)
+					if((c = inMandelbrotSet(p2, 50)) != -1)
 					{
 						/*
 						int r = int(c * 0.01 * 255)%255;
