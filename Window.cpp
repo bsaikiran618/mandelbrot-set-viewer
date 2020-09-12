@@ -16,7 +16,7 @@ void Window::drawAxes( Cartesian2DPlane *plane )
 	Cartesian2DPoint topExtreme		(double(1000), 0,		plane);
 	Cartesian2DPoint bottomExtreme	(double(-1000),0, 	plane);
 
-	SDL_SetRenderDrawColor(screenRenderer, 180,180,180,SDL_ALPHA_OPAQUE);
+	SDL_SetRenderDrawColor(screenRenderer, 120,120,120,SDL_ALPHA_OPAQUE);
 	//The X axis
 	SDL_RenderDrawLine(screenRenderer, leftExtreme.getOnScreenX(), leftExtreme.getOnScreenY(),	
 										rightExtreme.getOnScreenX(), rightExtreme.getOnScreenY());
@@ -24,37 +24,17 @@ void Window::drawAxes( Cartesian2DPlane *plane )
 	SDL_RenderDrawLine(screenRenderer, topExtreme.getOnScreenX(), topExtreme.getOnScreenY(),
 										bottomExtreme.getOnScreenX(), bottomExtreme.getOnScreenY());
 }
-
-Window::Window(std::string windowTitle, uint64_t flags)
-{	
-		if(SDL_Init(SDL_INIT_VIDEO) < 0) throw "Couldn't initialize SDL Video!";
-
-		if((window = SDL_CreateWindow(windowTitle.c_str(), WINDOW_X, WINDOW_Y, SCREEN_W, SCREEN_H, flags)) == NULL)
-			throw "Couldn't create SDL window!";
-
-		//windowSurface = SDL_GetWindowSurface(window);
-
-		if((screenRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
-			throw "Couldn't create SDL Renderer!";
-}
-void Window::startEventLoop()
+void Window::drawScreen(Cartesian2DPlane *plane)
 {
-		SDL_Event e;
-		bool appQuit = false;
-		srand(42);
-		
-		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 150);
-		while(!appQuit)
-		{
 			SDL_SetRenderDrawColor(screenRenderer, 0,0,0,SDL_ALPHA_OPAQUE);
 			SDL_RenderClear(screenRenderer);
 
-			for(uint64_t scr_x = 0; scr_x < plane.getWidth(); scr_x++)
+			for(uint64_t scr_x = 0; scr_x < plane->getWidth(); scr_x++)
 			{
-				for(uint64_t scr_y = 0; scr_y < plane.getHeight(); scr_y++)
+				for(uint64_t scr_y = 0; scr_y < plane->getHeight(); scr_y++)
 				{
 					//convert the screen coordinates to the cartesian plane coordinates
-					Cartesian2DPoint p1(uint64_t(scr_x), uint64_t(scr_y), &plane);
+					Cartesian2DPoint p1(uint64_t(scr_x), uint64_t(scr_y), plane);
 					//convert cartesian plane coordinates to complex plane coordinates
 					//std::complex<double> p2(p1.getPlaneX(), p1.getPlaneY());
 					std::complex<double> p2(-p1.getPlaneY(), p1.getPlaneX());
@@ -80,7 +60,34 @@ void Window::startEventLoop()
 					SDL_RenderDrawPoint(screenRenderer, p1.getOnScreenX(), p1.getOnScreenY());
 				}
 			}
-			drawAxes(&plane);
+			drawAxes(plane);
+			SDL_RenderPresent(screenRenderer);
+}
+
+Window::Window(std::string windowTitle, uint64_t flags)
+{	
+		if(SDL_Init(SDL_INIT_VIDEO) < 0) throw "Couldn't initialize SDL Video!";
+
+		if((window = SDL_CreateWindow(windowTitle.c_str(), WINDOW_X, WINDOW_Y, SCREEN_W, SCREEN_H, flags)) == NULL)
+			throw "Couldn't create SDL window!";
+
+		//windowSurface = SDL_GetWindowSurface(window);
+
+		if((screenRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
+			throw "Couldn't create SDL Renderer!";
+}
+void Window::startEventLoop()
+{
+		SDL_Event e;
+		bool appQuit = false;
+		bool changed = false;
+		srand(42);
+		
+		Cartesian2DPlane plane(SCREEN_W, SCREEN_H, 150);
+		drawScreen(&plane);
+		while(!appQuit)
+		{
+			changed = false;
 			while(SDL_PollEvent(&e))
 			{
 				if(e.type == SDL_QUIT)
@@ -92,16 +99,16 @@ void Window::startEventLoop()
 				{
 					switch(e.key.keysym.sym)
 					{
-						case SDLK_UP: 		plane.translateUp();	break;
-						case SDLK_DOWN: 	plane.translateDown();	break;
-						case SDLK_LEFT: 	plane.translateLeft();	break;
-						case SDLK_RIGHT: 	plane.translateRight();	break;
-						case SDLK_KP_PLUS: 	plane.zoomIn();			break;
-						case SDLK_KP_MINUS:	plane.zoomOut();		break;
+						case SDLK_UP: 		plane.translateUp();	changed = true;break;
+						case SDLK_DOWN: 	plane.translateDown();	changed = true;break;
+						case SDLK_LEFT: 	plane.translateLeft();	changed = true;break;
+						case SDLK_RIGHT: 	plane.translateRight();	changed = true;break;
+						case SDLK_KP_PLUS: 	plane.zoomIn();			changed = true;break;
+						case SDLK_KP_MINUS:	plane.zoomOut();		changed = true;break;
 					}
 				}
 			}
-			SDL_RenderPresent(screenRenderer);
+			if(changed) drawScreen(&plane);
 		}
 		//event loop ends.
 }
