@@ -69,7 +69,8 @@ void Window::drawScreen(Cartesian2DPlane *plane)
 			SDL_RenderPresent(screenRenderer);
 			end = clock();
 			double elapsed_time = double(end - start)/CLOCKS_PER_SEC;
-			std::cout << elapsed_time << " secs/frame\n";
+			std::cout << "\r" << elapsed_time << " secs/frame";
+			fflush(stdout);
 }
 
 Window::Window(std::string windowTitle, uint64_t flags)
