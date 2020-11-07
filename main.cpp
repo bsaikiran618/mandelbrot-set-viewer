@@ -25,7 +25,7 @@ int main()
 {
 	try
 	{
-		Window appWindow("SK's Mandelbrot Set Viewer", SDL_WINDOW_FULLSCREEN|SDL_WINDOW_SHOWN);
+		Window appWindow("SK's Mandelbrot Set Viewer", SDL_WINDOW_SHOWN);
 		appWindow.startEventLoop();
 	}
 	catch(std::string errMsg)
