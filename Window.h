@@ -20,6 +20,7 @@ class Window
 	Window(std::string windowTitle, uint64_t flags=SDL_WINDOW_SHOWN);
 	void drawAxes(Cartesian2DPlane *plane);
 	void startEventLoop();
+	void drawScreen(Cartesian2DPlane *plane);
 };
 
 #endif
