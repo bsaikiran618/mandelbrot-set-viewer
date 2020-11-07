@@ -33,6 +33,6 @@ Install SDL2 and Compile the source in your favourite editor, better yet: Dual b
   
   and,
   
-  (**+**) - **ZOOM IN**
+  (**z**) - **ZOOM IN**
   
-  (**-**) - **ZOOM OUT**
+  (**x**) - **ZOOM OUT**
