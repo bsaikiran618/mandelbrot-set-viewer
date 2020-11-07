@@ -96,8 +96,8 @@ void Window::startEventLoop()
 						case SDLK_DOWN: 	plane.translateDown();	break;
 						case SDLK_LEFT: 	plane.translateLeft();	break;
 						case SDLK_RIGHT: 	plane.translateRight();	break;
-						case SDLK_KP_PLUS: 	plane.zoomIn();			break;
-						case SDLK_KP_MINUS:	plane.zoomOut();		break;
+						case SDLK_z: 	plane.zoomIn();			break;
+						case SDLK_x:	plane.zoomOut();		break;
 					}
 				}
 			}
