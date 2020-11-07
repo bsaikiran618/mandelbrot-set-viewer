@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <cmath>
+#include <time.h>
 #include <SDL2/SDL.h>
 
 
@@ -26,6 +27,10 @@ void Window::drawAxes( Cartesian2DPlane *plane )
 }
 void Window::drawScreen(Cartesian2DPlane *plane)
 {
+			clock_t start, end;
+
+			start = clock();
+
 			SDL_SetRenderDrawColor(screenRenderer, 0,0,0,SDL_ALPHA_OPAQUE);
 			SDL_RenderClear(screenRenderer);
 
@@ -60,8 +65,11 @@ void Window::drawScreen(Cartesian2DPlane *plane)
 					SDL_RenderDrawPoint(screenRenderer, p1.getOnScreenX(), p1.getOnScreenY());
 				}
 			}
-			drawAxes(plane);
+			//drawAxes(plane);
 			SDL_RenderPresent(screenRenderer);
+			end = clock();
+			double elapsed_time = double(end - start)/CLOCKS_PER_SEC;
+			std::cout << elapsed_time << " secs/frame\n";
 }
 
 Window::Window(std::string windowTitle, uint64_t flags)
@@ -103,8 +111,8 @@ void Window::startEventLoop()
 						case SDLK_DOWN: 	plane.translateDown();	changed = true;break;
 						case SDLK_LEFT: 	plane.translateLeft();	changed = true;break;
 						case SDLK_RIGHT: 	plane.translateRight();	changed = true;break;
-						case SDLK_KP_PLUS: 	plane.zoomIn();			changed = true;break;
-						case SDLK_KP_MINUS:	plane.zoomOut();		changed = true;break;
+						case SDLK_z: 	plane.zoomIn();			changed = true;break;
+						case SDLK_x:	plane.zoomOut();		changed = true;break;
 					}
 				}
 			}
